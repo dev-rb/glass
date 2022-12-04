@@ -50,7 +50,7 @@ button {
 
 .titlebar {
 	height: 30px;
-	background: rgba(27, 27, 27, 0.4);
+	background: #00ff00;
 	user-select: none;
 	display: flex;
 	justify-content: flex-end;

@@ -5,7 +5,7 @@ import { convertFileSrc } from '@tauri-apps/api/tauri';
 import './App.css';
 import { Portal } from 'solid-js/web';
 import { createStore } from 'solid-js/store';
-
+import { appWindow } from '@tauri-apps/api/window';
 interface AppState {
 	menuOpen: { x: number; y: number } | null;
 	imageOpacity: number;
@@ -68,7 +68,7 @@ function App() {
 	};
 
 	const toggleAlwaysOnTop = () => {
-		invoke('toggle_always_on_top', { value: state.canClickThrough });
+		invoke('toggle_always_on_top', { value: !state.canClickThrough });
 		setState('canClickThrough', (c) => !c);
 	};
 
