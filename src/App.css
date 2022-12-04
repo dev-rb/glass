@@ -1,7 +1,17 @@
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
+.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: flex-end;
+	user-select: none;
+	background-color: transparent;
 }
 
-.logo.solid:hover {
-  filter: drop-shadow(0 0 2em #2f5d90);
+.controls {
+	width: fit-content;
+	display: flex;
+
+	background-color: red;
 }
