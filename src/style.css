@@ -4,18 +4,27 @@
 	line-height: 24px;
 	font-weight: 400;
 	--user-image: '';
+	--image-opacity: 1;
+	--window-opacity: 0;
 	color: #0f0f0f;
-	background-color: rgba(1, 1, 1, 0.2);
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+}
+
+:root::before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	position: absolute;
 	background-image: var(--user-image);
 	background-size: contain;
 	background-position: center center;
 	background-repeat: no-repeat;
+	opacity: var(--image-opacity);
 	transition: background-image 300ms ease;
 }
 
@@ -27,6 +36,7 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+	background-color: rgba(0, 0, 0, var(--window-opacity));
 }
 
 body {
@@ -40,7 +50,7 @@ button {
 
 .titlebar {
 	height: 30px;
-	background: transparent;
+	background: rgba(27, 27, 27, 0.4);
 	user-select: none;
 	display: flex;
 	justify-content: flex-end;
@@ -68,7 +78,7 @@ button {
 @media (prefers-color-scheme: dark) {
 	:root {
 		color: #f6f6f6;
-		background-color: rgba(0, 0, 0, 0.2);
+		/* background-color: rgba(0, 0, 0, var(--window-opacity)); */
 	}
 
 	input,
