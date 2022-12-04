@@ -3,7 +3,7 @@
 	font-size: 16px;
 	line-height: 24px;
 	font-weight: 400;
-
+	--user-image: '';
 	color: #0f0f0f;
 	background-color: rgba(1, 1, 1, 0.2);
 
@@ -12,10 +12,11 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
-	background-image: url('./assets/1JkgkKl.png');
+	background-image: var(--user-image);
 	background-size: contain;
 	background-position: center center;
 	background-repeat: no-repeat;
+	transition: background-image 300ms ease;
 }
 
 * {

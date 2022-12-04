@@ -1,6 +1,7 @@
 import { createSignal, JSX, onMount, Show } from 'solid-js';
 import logo from './assets/logo.svg';
-import { invoke } from '@tauri-apps/api/tauri';
+import { dialog } from '@tauri-apps/api';
+import { convertFileSrc } from '@tauri-apps/api/tauri';
 import './App.css';
 import { Portal } from 'solid-js/web';
 
@@ -10,11 +11,23 @@ function App() {
 	);
 	const [ref, setRef] = createSignal<HTMLElement>();
 
-	const openImage = () => {};
+	const openImage = async () => {
+		const selectedImage = await dialog.open({
+			multiple: false,
+			filters: [{ name: 'Image', extensions: ['png', 'jpg'] }],
+		});
+		if (selectedImage && !Array.isArray(selectedImage)) {
+			document.documentElement.style.setProperty(
+				'background-image',
+				`url(${convertFileSrc(selectedImage)})`
+			);
+		}
+
+		setShowMenu(null);
+	};
 
 	const clickOutside = (e: MouseEvent) => {
 		if (e.target instanceof HTMLElement) {
-			console.log(e.target);
 			if (ref() && (ref()?.contains(e.target) || ref()?.isSameNode(e.target)))
 				return;
 
