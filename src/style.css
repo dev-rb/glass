@@ -12,6 +12,25 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+	background-image: url('./assets/1JkgkKl.png');
+	background-size: contain;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
 }
 
 button {
