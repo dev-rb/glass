@@ -21,6 +21,14 @@ tauri = {version = "1.2", features = ["api-all"] }
 [target."cfg(target_os = \"windows\")".dependencies.windows-sys]
 version = "0.42.0"
 
+[dependencies.windows]
+version = "0.36.1"
+features = [
+    "Win32_Foundation",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_Graphics_Gdi",
+]
+
 [features]
 # by default Tauri runs in production mode
 # when `tauri dev` runs it is executed with `cargo run --no-default-features` if `devPath` is an URL

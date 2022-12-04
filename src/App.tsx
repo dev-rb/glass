@@ -1,6 +1,6 @@
 import { createSignal, JSX, onMount, Show } from 'solid-js';
 import logo from './assets/logo.svg';
-import { dialog } from '@tauri-apps/api';
+import { dialog, invoke } from '@tauri-apps/api';
 import { convertFileSrc } from '@tauri-apps/api/tauri';
 import './App.css';
 import { Portal } from 'solid-js/web';
@@ -10,6 +10,7 @@ interface AppState {
 	menuOpen: { x: number; y: number } | null;
 	imageOpacity: number;
 	windowOpacity: number;
+	canClickThrough: boolean;
 }
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 		menuOpen: null,
 		imageOpacity: 1,
 		windowOpacity: 0.2,
+		canClickThrough: false,
 	});
 
 	const closeMenu = () => setState('menuOpen', null);
@@ -65,6 +67,11 @@ function App() {
 		);
 	};
 
+	const toggleAlwaysOnTop = () => {
+		invoke('toggle_always_on_top', { value: state.canClickThrough });
+		setState('canClickThrough', (c) => !c);
+	};
+
 	const clickOutside = (e: MouseEvent) => {
 		if (e.target instanceof HTMLElement) {
 			if (ref() && (ref()?.contains(e.target) || ref()?.isSameNode(e.target)))
@@ -99,6 +106,7 @@ function App() {
 					>
 						<button onClick={openImage}> Open Image </button>
 						<button onClick={clearImage}> Clear Image </button>
+						<button onClick={toggleAlwaysOnTop}> Toggle Always on Top </button>
 						<hr class="divider" />
 						<label id="opacity-label" for="image-opacity">
 							Image Opacity
