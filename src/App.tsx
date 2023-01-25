@@ -19,7 +19,7 @@ function App() {
 	const [state, setState] = createStore<AppState>({
 		menuOpen: null,
 		imageOpacity: 1,
-		windowOpacity: 0.2,
+		windowOpacity: 0.8,
 		canClickThrough: false,
 	});
 
@@ -82,13 +82,24 @@ function App() {
 	};
 
 	onMount(() => {
+		invoke('toggle_decorations');
 		document.addEventListener('mousedown', clickOutside);
-		document
-			.getElementById('titlebar')
-			?.addEventListener('contextmenu', (e) => {
+		const titlebar = document.getElementById('titlebar');
+		if (titlebar) {
+			titlebar.addEventListener('contextmenu', (e) => {
 				e.preventDefault();
 				setState('menuOpen', { x: e.clientX, y: e.clientY });
 			});
+			document
+				.getElementById('titlebar-minimize')
+				?.addEventListener('click', () => appWindow.minimize());
+			document
+				.getElementById('titlebar-maximize')
+				?.addEventListener('click', () => appWindow.toggleMaximize());
+			document
+				.getElementById('titlebar-close')
+				?.addEventListener('click', () => appWindow.close());
+		}
 	});
 
 	return (

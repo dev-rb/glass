@@ -5,7 +5,7 @@
 	font-weight: 400;
 	--user-image: '';
 	--image-opacity: 1;
-	--window-opacity: 0;
+	--window-opacity: 0.8;
 	color: #0f0f0f;
 
 	font-synthesis: none;
@@ -50,7 +50,7 @@ button {
 
 .titlebar {
 	height: 30px;
-	background: #00ff00;
+	background: #202020;
 	user-select: none;
 	display: flex;
 	justify-content: flex-end;
